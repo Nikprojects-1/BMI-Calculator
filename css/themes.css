@@ -1,0 +1,86 @@
+/* Theme Variations */
+
+[data-theme="dark"] {
+  --bg-primary: #0F172A;
+  --bg-secondary: #1E293B;
+  --bg-card: rgba(30, 41, 59, 0.6);
+  --glass-bg: rgba(15, 23, 42, 0.75);
+  --glass-border: rgba(148, 163, 184, 0.12);
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --primary: #10B981;
+  --accent: #06B6D4;
+}
+
+[data-theme="light"] {
+  --bg-primary: #F1F5F9;
+  --bg-secondary: #FFFFFF;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(15, 23, 42, 0.08);
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --primary: #059669;
+  --accent: #0891B2;
+  --shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
+  --shadow-glow: 0 0 40px rgba(5, 150, 105, 0.1);
+}
+
+[data-theme="light"] .particle { background: var(--primary); opacity: 0.15; }
+
+[data-theme="neon"] {
+  --bg-primary: #0a0a1a;
+  --bg-secondary: #12122a;
+  --glass-bg: rgba(10, 10, 26, 0.85);
+  --glass-border: rgba(16, 185, 129, 0.25);
+  --primary: #00FF88;
+  --primary-dark: #00CC6A;
+  --accent: #00D4FF;
+  --success: #00FF88;
+  --text-primary: #E0FFE8;
+  --shadow-glow: 0 0 60px rgba(0, 255, 136, 0.2);
+}
+
+[data-theme="neon"] .brand-icon,
+[data-theme="neon"] .bmi-number {
+  filter: drop-shadow(0 0 12px var(--primary));
+}
+
+[data-theme="neon"] .stat-card,
+[data-theme="neon"] .card {
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.08);
+}
+
+[data-theme="neon"] .btn-primary {
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
+}
+
+[data-theme="nature"] {
+  --bg-primary: #0c1f0c;
+  --bg-secondary: #1a2e1a;
+  --glass-bg: rgba(12, 31, 12, 0.85);
+  --glass-border: rgba(34, 197, 94, 0.2);
+  --primary: #4ADE80;
+  --primary-dark: #22C55E;
+  --accent: #86EFAC;
+  --success: #4ADE80;
+  --text-primary: #ECFDF5;
+  --text-secondary: #A7F3D0;
+}
+
+[data-theme="nature"] .stat-icon {
+  background: rgba(74, 222, 128, 0.15);
+}
+
+/* Theme transition */
+body,
+.glass,
+.card,
+.sidebar,
+.stat-card,
+.btn,
+.form-group input,
+.form-group select {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}

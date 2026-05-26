@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings | HealthPulse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="particles" id="particles" aria-hidden="true"></div>
+
+  <nav class="sidebar" id="sidebar" data-active="settings"></nav>
+
+  <main class="main-content">
+    <header class="top-bar glass">
+      <div class="top-bar-left">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">☰</button>
+        <h1 class="page-title">Settings</h1>
+        <p class="page-subtitle">Customize your health tracking experience</p>
+      </div>
+      <div class="theme-quick" id="themeQuick"></div>
+    </header>
+
+    <section class="settings-grid reveal">
+      <div class="card glass settings-card">
+        <h3>Theme</h3>
+        <p>Choose your preferred visual theme</p>
+        <div class="theme-picker" id="themePicker">
+          <button class="theme-option active" data-theme="dark">
+            <span class="theme-preview dark-preview"></span>
+            <span>Dark</span>
+          </button>
+          <button class="theme-option" data-theme="light">
+            <span class="theme-preview light-preview"></span>
+            <span>Light</span>
+          </button>
+          <button class="theme-option" data-theme="neon">
+            <span class="theme-preview neon-preview"></span>
+            <span>Neon Health</span>
+          </button>
+          <button class="theme-option" data-theme="nature">
+            <span class="theme-preview nature-preview"></span>
+            <span>Nature Green</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="card glass settings-card">
+        <h3>Units</h3>
+        <div class="setting-row">
+          <label>Measurement System</label>
+          <select id="settingsUnits">
+            <option value="metric">Metric (kg, cm)</option>
+            <option value="imperial">Imperial (lbs, ft)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card glass settings-card">
+        <h3>Goals</h3>
+        <div class="setting-row">
+          <label>Daily Step Goal</label>
+          <input type="number" id="settingsStepsGoal" value="10000" min="1000" max="50000">
+        </div>
+        <div class="setting-row">
+          <label>Daily Water Goal (glasses)</label>
+          <input type="number" id="settingsWaterGoal" value="8" min="1" max="20">
+        </div>
+        <div class="setting-row">
+          <label>Target Weight</label>
+          <input type="number" id="settingsTargetWeight" step="0.1" placeholder="kg">
+        </div>
+        <div class="setting-row">
+          <label>Fitness Goal</label>
+          <select id="settingsFitnessGoal">
+            <option value="loss">Weight Loss</option>
+            <option value="maintain">Maintain Weight</option>
+            <option value="gain">Weight Gain</option>
+            <option value="muscle">Muscle Gain</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" id="saveSettings">Save Goals</button>
+      </div>
+
+      <div class="card glass settings-card">
+        <h3>Notifications</h3>
+        <div class="setting-toggle">
+          <label><input type="checkbox" id="notifWater" checked> Water reminders</label>
+        </div>
+        <div class="setting-toggle">
+          <label><input type="checkbox" id="notifWeight" checked> Weight logging reminders</label>
+        </div>
+        <div class="setting-toggle">
+          <label><input type="checkbox" id="notifGoals" checked> Goal progress alerts</label>
+        </div>
+        <div class="setting-toggle">
+          <label><input type="checkbox" id="notifHealth" checked> Health warnings</label>
+        </div>
+      </div>
+
+      <div class="card glass settings-card">
+        <h3>Data Management</h3>
+        <p>All data is stored locally in your browser.</p>
+        <div class="data-actions">
+          <button class="btn btn-secondary" id="exportData">Export JSON</button>
+          <button class="btn btn-secondary" id="importData">Import JSON</button>
+          <input type="file" id="importFile" accept=".json" hidden>
+          <button class="btn btn-danger" id="clearData">Clear All Data</button>
+        </div>
+      </div>
+
+      <div class="card glass settings-card">
+        <h3>About</h3>
+        <p>HealthPulse v1.0 — Premium BMI & Health Tracker</p>
+        <p class="text-muted">Built with HTML5, CSS3, and Vanilla JavaScript. No external dependencies.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/bmi.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/tracker.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages.js"></script>
+</body>
+</html>

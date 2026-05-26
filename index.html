@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Premium BMI Calculator and Health Tracker">
+  <title>HealthPulse | BMI & Health Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="particles" id="particles" aria-hidden="true"></div>
+
+  <nav class="sidebar" id="sidebar" data-active="index"></nav>
+
+  <main class="main-content">
+    <header class="top-bar glass">
+      <div class="top-bar-left">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">☰</button>
+        <h1 class="page-title">Health Dashboard</h1>
+        <p class="page-subtitle" id="greeting">Welcome back</p>
+      </div>
+      <div class="top-bar-right">
+        <button class="icon-btn" id="fullscreenBtn" title="Fullscreen">⛶</button>
+        <button class="icon-btn" id="notifBell" title="Notifications">🔔<span class="badge-dot" id="notifBadge"></span></button>
+        <div class="theme-quick" id="themeQuick"></div>
+      </div>
+    </header>
+
+    <!-- Stats Cards -->
+    <section class="stats-grid reveal">
+      <div class="stat-card glass gradient-border">
+        <div class="stat-icon bmi-icon">⚖</div>
+        <div class="stat-info">
+          <span class="stat-label">Current BMI</span>
+          <span class="stat-value counter" data-target="0" id="dashBmi">--</span>
+          <span class="stat-badge" id="dashBmiCategory">Not set</span>
+        </div>
+        <div class="circular-progress" data-progress="0" id="bmiCircle">
+          <svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="45"/><circle class="fill" cx="50" cy="50" r="45"/></svg>
+          <span class="circle-text" id="bmiCircleText">0%</span>
+        </div>
+      </div>
+      <div class="stat-card glass">
+        <div class="stat-icon weight-icon">📈</div>
+        <div class="stat-info">
+          <span class="stat-label">Current Weight</span>
+          <span class="stat-value counter" data-target="0" id="dashWeight">--</span>
+          <span class="stat-change" id="dashWeightChange">+0 kg this week</span>
+        </div>
+      </div>
+      <div class="stat-card glass">
+        <div class="stat-icon calorie-icon">🔥</div>
+        <div class="stat-info">
+          <span class="stat-label">Daily Calories</span>
+          <span class="stat-value counter" data-target="0" id="dashCalories">--</span>
+          <span class="stat-sub">BMR estimate</span>
+        </div>
+      </div>
+      <div class="stat-card glass">
+        <div class="stat-icon water-icon">💧</div>
+        <div class="stat-info">
+          <span class="stat-label">Water Intake</span>
+          <span class="stat-value"><span class="counter" data-target="0" id="dashWater">0</span> / <span id="dashWaterGoal">8</span> glasses</span>
+          <div class="mini-progress"><div class="mini-fill" id="waterMiniFill"></div></div>
+        </div>
+      </div>
+      <div class="stat-card glass">
+        <div class="stat-icon steps-icon">👟</div>
+        <div class="stat-info">
+          <span class="stat-label">Steps Today</span>
+          <span class="stat-value counter" data-target="0" id="dashSteps">0</span>
+          <span class="stat-sub">Goal: <span id="dashStepsGoal">10000</span></span>
+        </div>
+        <div class="circular-progress small" data-progress="0" id="stepsCircle">
+          <svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="45"/><circle class="fill" cx="50" cy="50" r="45"/></svg>
+        </div>
+      </div>
+      <div class="stat-card glass">
+        <div class="stat-icon goal-icon">🎯</div>
+        <div class="stat-info">
+          <span class="stat-label">Goal Progress</span>
+          <span class="stat-value counter" data-target="0" id="dashGoalPct">0%</span>
+          <span class="stat-sub" id="dashGoalLabel">Set a goal in settings</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- BMI Calculator -->
+    <section class="section bmi-section reveal" id="bmi-section">
+      <div class="section-header">
+        <h2>BMI Calculator</h2>
+        <p>Calculate your Body Mass Index and get personalized health insights</p>
+      </div>
+      <div class="bmi-grid">
+        <div class="card glass bmi-form-card">
+          <div class="unit-switcher">
+            <button class="unit-btn active" data-unit="metric">Metric (kg/cm)</button>
+            <button class="unit-btn" data-unit="imperial">Imperial (lbs/ft)</button>
+          </div>
+          <form id="bmiForm" class="bmi-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="height">Height</label>
+                <div class="input-group metric-inputs" id="heightMetric">
+                  <input type="number" id="heightCm" placeholder="170" min="50" max="300" step="0.1">
+                  <span class="input-suffix">cm</span>
+                </div>
+                <div class="input-group imperial-inputs hidden" id="heightImperial">
+                  <input type="number" id="heightFt" placeholder="5" min="1" max="9">
+                  <span class="input-suffix">ft</span>
+                  <input type="number" id="heightIn" placeholder="7" min="0" max="11">
+                  <span class="input-suffix">in</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="weight">Weight</label>
+                <div class="input-group">
+                  <input type="number" id="weight" placeholder="70" min="20" max="500" step="0.1">
+                  <span class="input-suffix" id="weightUnit">kg</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" placeholder="25" min="2" max="120">
+              </div>
+              <div class="form-group">
+                <label>Gender</label>
+                <div class="gender-select">
+                  <button type="button" class="gender-btn active" data-gender="male">Male</button>
+                  <button type="button" class="gender-btn" data-gender="female">Female</button>
+                  <button type="button" class="gender-btn" data-gender="other">Other</button>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="activity">Activity Level</label>
+                <select id="activity">
+                  <option value="1.2">Sedentary</option>
+                  <option value="1.375">Light exercise</option>
+                  <option value="1.55" selected>Moderate exercise</option>
+                  <option value="1.725">Heavy exercise</option>
+                  <option value="1.9">Athlete</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="fitnessGoal">Fitness Goal</label>
+                <select id="fitnessGoal">
+                  <option value="loss">Weight Loss</option>
+                  <option value="maintain" selected>Maintain Weight</option>
+                  <option value="gain">Weight Gain</option>
+                  <option value="muscle">Muscle Gain</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-glow">Calculate BMI</button>
+          </form>
+        </div>
+        <div class="card glass bmi-result-card" id="bmiResult">
+          <div class="bmi-meter">
+            <div class="bmi-score-display">
+              <span class="bmi-number" id="bmiScore">--</span>
+              <span class="bmi-label">BMI Score</span>
+            </div>
+            <div class="bmi-gauge">
+              <div class="gauge-track">
+                <div class="gauge-fill" id="gaugeFill"></div>
+                <div class="gauge-marker" id="gaugeMarker"></div>
+              </div>
+              <div class="gauge-labels">
+                <span>18.5</span><span>25</span><span>30</span>
+              </div>
+            </div>
+          </div>
+          <div class="category-badge" id="categoryBadge">Enter details</div>
+          <p class="health-message" id="healthMessage">Fill in your height and weight to calculate your BMI and receive personalized recommendations.</p>
+          <div class="ideal-weight" id="idealWeight">
+            <span class="ideal-label">Ideal Weight Range</span>
+            <span class="ideal-value" id="idealWeightValue">--</span>
+          </div>
+          <div class="bmi-recommendations" id="bmiRecommendations"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Weight Tracking -->
+    <section class="section weight-section reveal">
+      <div class="section-header">
+        <h2>Weight Tracking</h2>
+        <p>Log and monitor your weight progress over time</p>
+      </div>
+      <div class="weight-grid">
+        <div class="card glass">
+          <h3>Log Weight</h3>
+          <form id="weightForm" class="inline-form">
+            <input type="number" id="logWeight" placeholder="Weight" step="0.1" required>
+            <span class="input-suffix" id="logWeightUnit">kg</span>
+            <input type="date" id="logDate" required>
+            <button type="submit" class="btn btn-primary">Add Entry</button>
+          </form>
+          <div class="weight-goal-row">
+            <label>Target Weight: <input type="number" id="targetWeight" placeholder="65" step="0.1"></label>
+            <button class="btn btn-secondary btn-sm" id="saveTarget">Save Goal</button>
+          </div>
+        </div>
+        <div class="card glass weight-chart-card">
+          <h3>Weight Trend</h3>
+          <canvas id="weightMiniChart" height="180"></canvas>
+        </div>
+      </div>
+      <div class="weight-history" id="weightHistory"></div>
+    </section>
+
+    <!-- Water Tracker -->
+    <section class="section water-section reveal">
+      <div class="section-header">
+        <h2>Water Intake</h2>
+        <p>Stay hydrated throughout the day</p>
+      </div>
+      <div class="water-grid">
+        <div class="card glass water-card">
+          <div class="water-wave-container">
+            <div class="water-wave" id="waterWave"></div>
+            <div class="water-circle-content">
+              <span class="water-count" id="waterCount">0</span>
+              <span class="water-label">glasses</span>
+            </div>
+          </div>
+          <div class="water-controls">
+            <button class="btn btn-water" id="addWater">+ Add Glass</button>
+            <button class="btn btn-secondary" id="removeWater">− Remove</button>
+            <button class="btn btn-ghost" id="resetWater">Reset Today</button>
+          </div>
+          <div class="water-goal-set">
+            <label>Daily Goal: <input type="number" id="waterGoalInput" value="8" min="1" max="20"> glasses</label>
+          </div>
+        </div>
+        <div class="card glass hydration-meter-card">
+          <h3>Hydration Status</h3>
+          <div class="circular-progress large" data-progress="0" id="hydrationCircle">
+            <svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="45"/><circle class="fill water-fill" cx="50" cy="50" r="45"/></svg>
+            <span class="circle-text" id="hydrationPct">0%</span>
+          </div>
+          <p class="reminder-text" id="waterReminder">💧 Time to drink water!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calorie & BMR -->
+    <section class="section calorie-section reveal">
+      <div class="section-header">
+        <h2>Calorie Estimator</h2>
+        <p>Calculate your daily calorie needs based on BMR</p>
+      </div>
+      <div class="calorie-grid card glass">
+        <div class="calorie-stat">
+          <span class="calorie-label">BMR (Basal Metabolic Rate)</span>
+          <span class="calorie-value" id="bmrValue">--</span>
+          <span class="calorie-unit">kcal/day</span>
+        </div>
+        <div class="calorie-stat">
+          <span class="calorie-label">Daily Calorie Target</span>
+          <span class="calorie-value highlight" id="calorieTarget">--</span>
+          <span class="calorie-unit">kcal/day</span>
+        </div>
+        <div class="calorie-stat">
+          <span class="calorie-label">Body Fat Estimate</span>
+          <span class="calorie-value" id="bodyFatValue">--</span>
+          <span class="calorie-unit">%</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Health Tips -->
+    <section class="section tips-section reveal">
+      <div class="section-header">
+        <h2>Daily Health Tips</h2>
+        <button class="btn btn-secondary btn-sm" id="newTipBtn">New Tip</button>
+      </div>
+      <div class="tips-slider" id="tipsSlider">
+        <div class="tip-card glass active" id="currentTip">
+          <span class="tip-category" id="tipCategory">Fitness</span>
+          <p class="tip-text" id="tipText">Loading tip...</p>
+          <blockquote class="tip-quote" id="tipQuote">"Your health is an investment, not an expense."</blockquote>
+        </div>
+      </div>
+      <div class="tip-dots" id="tipDots"></div>
+    </section>
+
+    <!-- Extra Features Row -->
+    <section class="section extras-section reveal">
+      <div class="extras-grid">
+        <div class="card glass extra-card">
+          <h3>🔥 Fitness Streak</h3>
+          <span class="streak-value counter" data-target="0" id="streakDays">0</span>
+          <span class="streak-label">days active</span>
+          <button class="btn btn-primary btn-sm" id="logStreak">Log Today</button>
+        </div>
+        <div class="card glass extra-card">
+          <h3>😊 Daily Mood</h3>
+          <div class="mood-picker" id="moodPicker">
+            <button class="mood-btn" data-mood="great" title="Great">😄</button>
+            <button class="mood-btn" data-mood="good" title="Good">🙂</button>
+            <button class="mood-btn" data-mood="okay" title="Okay">😐</button>
+            <button class="mood-btn" data-mood="low" title="Low">😔</button>
+            <button class="mood-btn" data-mood="bad" title="Bad">😢</button>
+          </div>
+          <p class="mood-status" id="moodStatus">How are you feeling today?</p>
+        </div>
+        <div class="card glass extra-card">
+          <h3>⏱ Workout Timer</h3>
+          <div class="timer-display" id="timerDisplay">00:00</div>
+          <div class="timer-controls">
+            <button class="btn btn-primary btn-sm" id="timerStart">Start</button>
+            <button class="btn btn-secondary btn-sm" id="timerPause">Pause</button>
+            <button class="btn btn-ghost btn-sm" id="timerReset">Reset</button>
+          </div>
+        </div>
+        <div class="card glass extra-card">
+          <h3>🏆 Achievements</h3>
+          <div class="badges-grid" id="badgesGrid"></div>
+        </div>
+        <div class="card glass extra-card">
+          <h3>📅 Weekly Challenge</h3>
+          <p class="challenge-text" id="challengeText">Walk 50,000 steps this week</p>
+          <div class="challenge-progress"><div class="challenge-fill" id="challengeFill"></div></div>
+          <span class="challenge-pct" id="challengePct">0%</span>
+        </div>
+        <div class="card glass extra-card ai-card">
+          <h3>✨ Health Insights</h3>
+          <p class="ai-recommendation" id="aiRecommendation">Complete your BMI calculation to receive personalized AI-style health recommendations.</p>
+        </div>
+        <div class="card glass extra-card">
+          <h3>😴 Sleep Tracker</h3>
+          <div class="sleep-input">
+            <label>Hours slept: <input type="number" id="sleepHours" min="0" max="24" step="0.5" placeholder="7.5"></label>
+            <button class="btn btn-primary btn-sm" id="logSleep">Log Sleep</button>
+          </div>
+          <p class="sleep-avg">Avg: <span id="sleepAvg">--</span> hrs</p>
+        </div>
+        <div class="card glass extra-card voice-card">
+          <h3>🎤 Voice Assistant</h3>
+          <div class="voice-ui">
+            <div class="voice-pulse" id="voicePulse"></div>
+            <p>Tap to simulate voice command</p>
+            <button class="btn btn-primary btn-sm" id="voiceBtn">Activate</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Steps UI -->
+    <section class="section steps-section reveal">
+      <div class="card glass">
+        <h3>Step Counter</h3>
+        <div class="steps-control">
+          <input type="number" id="stepsInput" placeholder="Add steps" min="0" max="50000">
+          <button class="btn btn-primary" id="addSteps">Add Steps</button>
+          <button class="btn btn-secondary" id="resetSteps">Reset Today</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <div class="onboarding-overlay" id="onboarding">
+    <div class="onboarding-card glass">
+      <div class="onboarding-slide active" data-slide="0">
+        <div class="onboarding-icon">◈</div>
+        <h2>Welcome to HealthPulse</h2>
+        <p>Your premium BMI calculator and health tracking companion.</p>
+      </div>
+      <div class="onboarding-slide" data-slide="1">
+        <div class="onboarding-icon">⚖</div>
+        <h2>Track Your Health</h2>
+        <p>Calculate BMI, log weight, track water, and monitor your fitness goals.</p>
+      </div>
+      <div class="onboarding-slide" data-slide="2">
+        <div class="onboarding-icon">📊</div>
+        <h2>Visual Analytics</h2>
+        <p>View progress charts and export detailed health reports.</p>
+      </div>
+      <div class="onboarding-dots" id="onboardingDots"></div>
+      <div class="onboarding-actions">
+        <button class="btn btn-ghost" id="skipOnboarding">Skip</button>
+        <button class="btn btn-primary" id="nextOnboarding">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/bmi.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/tracker.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages.js"></script>
+</body>
+</html>

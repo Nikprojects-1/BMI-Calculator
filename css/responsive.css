@@ -1,0 +1,162 @@
+/* Responsive Design */
+
+@media (max-width: 1200px) {
+  .analytics-summary { grid-template-columns: repeat(2, 1fr); }
+  .calorie-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 1024px) {
+  .bmi-grid,
+  .weight-grid,
+  .water-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .charts-grid { grid-template-columns: 1fr; }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --sidebar-width: 0;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+    width: 280px;
+    max-width: 85vw;
+  }
+
+  .nav-scroll { max-height: calc(100vh - 120px); }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-toggle { display: block; }
+
+  .main-content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .top-bar-right {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .page-title { font-size: 1.35rem; }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bmi-form .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .bmi-number { font-size: 3rem; }
+
+  .analytics-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .report-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .theme-picker {
+    grid-template-columns: 1fr;
+  }
+
+  .toast-container {
+    left: 1rem;
+    right: 1rem;
+    max-width: none;
+  }
+
+  .extras-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .goal-charts-row {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .unit-switcher { flex-direction: column; }
+
+  .gender-select { flex-direction: column; }
+
+  .inline-form { flex-direction: column; align-items: stretch; }
+
+  .water-wave-container {
+    width: 150px;
+    height: 150px;
+  }
+
+  .water-count { font-size: 2rem; }
+
+  .onboarding-card { padding: 1.5rem; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* Print styles for reports */
+@media print {
+  .sidebar,
+  .top-bar,
+  .particles,
+  .toast-container,
+  .mobile-menu-btn {
+    display: none !important;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 0;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .report-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}

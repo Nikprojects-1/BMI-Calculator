@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise Library | HealthPulse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="exercise-library">
+  <div class="particles" id="particles" aria-hidden="true"></div>
+  <nav class="sidebar" id="sidebar" data-active="exercise-library"></nav>
+  <main class="main-content">
+    <header class="top-bar glass">
+      <div class="top-bar-left">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">☰</button>
+        <h1 class="page-title">Exercise Library</h1>
+        <p class="page-subtitle">Browse exercises by muscle group</p>
+      </div>
+      <div class="top-bar-right">
+        <div class="theme-quick" id="themeQuick"></div>
+      </div>
+    </header>
+    <section class="section reveal"><div class="content-grid">
+      <div class="card glass content-card"><h3>🏃 Cardio</h3><p>Running, cycling, swimming, jump rope</p></div>
+      <div class="card glass content-card"><h3>💪 Upper Body</h3><p>Push-ups, pull-ups, rows, presses</p></div>
+      <div class="card glass content-card"><h3>🦵 Lower Body</h3><p>Squats, lunges, deadlifts, calf raises</p></div>
+      <div class="card glass content-card"><h3>🧘 Flexibility</h3><p>Stretching, yoga, mobility drills</p></div></div></section>
+  </main>
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="js/storage.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/bmi.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/tracker.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages.js"></script>
+</body>
+</html>

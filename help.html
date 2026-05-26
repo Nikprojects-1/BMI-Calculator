@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help & FAQ | HealthPulse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="help">
+  <div class="particles" id="particles" aria-hidden="true"></div>
+  <nav class="sidebar" id="sidebar" data-active="help"></nav>
+  <main class="main-content">
+    <header class="top-bar glass">
+      <div class="top-bar-left">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">☰</button>
+        <h1 class="page-title">Help & FAQ</h1>
+        <p class="page-subtitle">How to use HealthPulse</p>
+      </div>
+      <div class="top-bar-right">
+        <div class="theme-quick" id="themeQuick"></div>
+      </div>
+    </header>
+    <section class="section reveal"><div class="card glass faq-card"><h3>How do I calculate BMI?</h3><p>Go to BMI Calculator, enter height, weight, age, and tap Calculate.</p></div>
+      <div class="card glass faq-card"><h3>Where is my data stored?</h3><p>All data is stored locally in your browser via LocalStorage.</p></div>
+      <div class="card glass faq-card"><h3>How do I change themes?</h3><p>Use Settings or the theme dots in the header.</p></div>
+      <div class="card glass faq-card"><h3>How do I export data?</h3><p>Visit Data Export or Settings → Export JSON.</p></div></section>
+  </main>
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="js/storage.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/bmi.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/tracker.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages.js"></script>
+</body>
+</html>

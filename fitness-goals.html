@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Goals | HealthPulse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="fitness-goals">
+  <div class="particles" id="particles" aria-hidden="true"></div>
+  <nav class="sidebar" id="sidebar" data-active="fitness-goals"></nav>
+  <main class="main-content">
+    <header class="top-bar glass">
+      <div class="top-bar-left">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">☰</button>
+        <h1 class="page-title">Fitness Goals</h1>
+        <p class="page-subtitle">Set and track your health targets</p>
+      </div>
+      <div class="top-bar-right">
+        <div class="theme-quick" id="themeQuick"></div>
+      </div>
+    </header>
+    <section class="section reveal"><div class="card glass"><div class="setting-row"><label>Target Weight (kg)</label><input type="number" id="goalTarget" step="0.1"></div>
+      <div class="setting-row"><label>Fitness Goal</label><select id="goalFitness"><option value="loss">Weight Loss</option><option value="maintain">Maintain</option><option value="gain">Gain</option><option value="muscle">Muscle</option></select></div>
+      <button class="btn btn-primary" id="saveGoalsBtn">Save Goals</button>
+      <p class="page-stat">Progress: <strong id="goalProgressPct">0%</strong></p></div></section>
+  </main>
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="js/storage.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/bmi.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/tracker.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages.js"></script>
+</body>
+</html>

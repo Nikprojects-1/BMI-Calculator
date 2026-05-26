@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Water Tracker | HealthPulse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="water-tracker">
+  <div class="particles" id="particles" aria-hidden="true"></div>
+  <nav class="sidebar" id="sidebar" data-active="water-tracker"></nav>
+  <main class="main-content">
+    <header class="top-bar glass">
+      <div class="top-bar-left">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">☰</button>
+        <h1 class="page-title">Water Tracker</h1>
+        <p class="page-subtitle">Track daily hydration goals</p>
+      </div>
+      <div class="top-bar-right">
+        <div class="theme-quick" id="themeQuick"></div>
+      </div>
+    </header>
+    <section class="section reveal"><div class="water-grid"><div class="card glass water-card">
+      <div class="water-wave-container"><div class="water-wave" id="waterPageWave"></div>
+      <div class="water-circle-content"><span class="water-count" id="waterPageCount">0</span><span class="water-label">/ <span id="waterPageGoal">8</span> glasses</span></div></div>
+      <div class="water-controls"><button class="btn btn-water" id="addWaterBtn">+ Glass</button>
+      <button class="btn btn-secondary" id="removeWaterBtn">−</button><button class="btn btn-ghost" id="resetWaterBtn">Reset</button></div></div>
+      <div class="card glass"><div class="circular-progress large" id="waterPageCircle"><svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="45"/><circle class="fill water-fill" cx="50" cy="50" r="45"/></svg>
+      <span class="circle-text" id="waterPagePct">0%</span></div></div></div></section>
+  </main>
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="js/storage.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/bmi.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/tracker.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages.js"></script>
+</body>
+</html>

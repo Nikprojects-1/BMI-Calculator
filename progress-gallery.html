@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Gallery | HealthPulse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="progress-gallery">
+  <div class="particles" id="particles" aria-hidden="true"></div>
+  <nav class="sidebar" id="sidebar" data-active="progress-gallery"></nav>
+  <main class="main-content">
+    <header class="top-bar glass">
+      <div class="top-bar-left">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">☰</button>
+        <h1 class="page-title">Progress Gallery</h1>
+        <p class="page-subtitle">Document your fitness journey</p>
+      </div>
+      <div class="top-bar-right">
+        <div class="theme-quick" id="themeQuick"></div>
+      </div>
+    </header>
+    <section class="section reveal"><div class="card glass"><form id="galleryForm"><textarea id="galleryNote" placeholder="Add a progress note..." rows="3"></textarea>
+      <button type="submit" class="btn btn-primary" style="margin-top:0.75rem">Save Note</button></form></div>
+      <div id="galleryList" class="gallery-grid"></div></section>
+  </main>
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="js/storage.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/bmi.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/tracker.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports | HealthPulse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="particles" id="particles" aria-hidden="true"></div>
+
+  <nav class="sidebar" id="sidebar" data-active="reports"></nav>
+
+  <main class="main-content">
+    <header class="top-bar glass">
+      <div class="top-bar-left">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">☰</button>
+        <h1 class="page-title">Health Reports</h1>
+        <p class="page-subtitle">Export and review your health data</p>
+      </div>
+      <div class="top-bar-right">
+        <button class="btn btn-primary" id="exportReport">Export Report</button>
+        <button class="btn btn-secondary" id="printReport">Print</button>
+        <div class="theme-quick" id="themeQuick"></div>
+      </div>
+    </header>
+
+    <section class="report-preview reveal">
+      <div class="card glass report-card" id="reportContent">
+        <div class="report-header">
+          <h2>Health Summary Report</h2>
+          <p class="report-date" id="reportDate"></p>
+        </div>
+        <div class="report-grid">
+          <div class="report-section">
+            <h4>BMI Overview</h4>
+            <table class="report-table" id="reportBmiTable">
+              <tr><td>Current BMI</td><td id="rptBmi">--</td></tr>
+              <tr><td>Category</td><td id="rptCategory">--</td></tr>
+              <tr><td>Ideal Weight</td><td id="rptIdeal">--</td></tr>
+            </table>
+          </div>
+          <div class="report-section">
+            <h4>Weight Progress</h4>
+            <table class="report-table" id="reportWeightTable">
+              <tr><td>Current Weight</td><td id="rptWeight">--</td></tr>
+              <tr><td>Target Weight</td><td id="rptTarget">--</td></tr>
+              <tr><td>Change (30d)</td><td id="rptChange">--</td></tr>
+            </table>
+          </div>
+          <div class="report-section">
+            <h4>Nutrition & Hydration</h4>
+            <table class="report-table">
+              <tr><td>Daily Calories</td><td id="rptCalories">--</td></tr>
+              <tr><td>BMR</td><td id="rptBmr">--</td></tr>
+              <tr><td>Water Today</td><td id="rptWater">--</td></tr>
+            </table>
+          </div>
+          <div class="report-section">
+            <h4>Activity & Goals</h4>
+            <table class="report-table">
+              <tr><td>Steps Today</td><td id="rptSteps">--</td></tr>
+              <tr><td>Fitness Streak</td><td id="rptStreak">--</td></tr>
+              <tr><td>Goal Progress</td><td id="rptGoal">--</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="report-section full">
+          <h4>Weight History (Recent)</h4>
+          <div id="reportWeightHistory" class="report-history-list"></div>
+        </div>
+        <div class="report-section full">
+          <h4>Health Recommendations</h4>
+          <ul id="reportRecommendations" class="report-list"></ul>
+        </div>
+        <p class="report-disclaimer">This report is generated from locally stored data for personal reference only. Not intended as medical advice.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/bmi.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/tracker.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages.js"></script>
+</body>
+</html>
